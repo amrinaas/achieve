@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('project_id')->nullable()->constrained();
-            $table->integer('priority');
-            $table->string('title');
-            $table->string('description')->nullable();
+            $table->string('name');
+            $table->longText('description')->nullable();
+            $table->string('image_path')->nullable();
+            $table->string('status');
+            $table->string('priority');
+            $table->string('due_date')->nullable();
+            $table->string('assigned_user_id')->constrained('users');
+            $table->string('created_by')->constrained('users');
+            $table->string('updated_by')->constrained('users');
+            $table->foreignId('project_id')->constrained('projects');
+            $table->timestamp('completed_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

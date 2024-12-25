@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
-use App\Models\Task;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
+use App\Http\Resources\ProjectResource;
+use App\Models\Project;
 use Inertia\Inertia;
 
-class TaskController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Inertia::render('Task/index', [
-            'tasks' => Task::all(),
+        $query = Project::query();
+
+        $projects = $query->paginate(10);
+
+        return Inertia::render('Project/index', [
+            'projects' => ProjectResource::collection($projects),
         ]);
     }
 
@@ -30,7 +35,7 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreProjectRequest $request)
     {
         //
     }
@@ -38,7 +43,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Task $task)
+    public function show(Project $project)
     {
         //
     }
@@ -46,7 +51,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Task $task)
+    public function edit(Project $project)
     {
         //
     }
@@ -54,7 +59,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
         //
     }
@@ -62,7 +67,7 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Project $project)
     {
         //
     }

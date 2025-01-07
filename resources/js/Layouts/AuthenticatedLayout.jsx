@@ -26,8 +26,8 @@ export default function AuthenticatedLayout({
                 </div>
 
                 <ResponsiveNavLink
-                    href={route("dashboard")}
-                    active={route().current("dashboard")}
+                    href={route("dashboard.index")}
+                    active={route().current("dashboard.index")}
                 >
                     Dashboard
                 </ResponsiveNavLink>
@@ -158,8 +158,8 @@ export default function AuthenticatedLayout({
                     >
                         <div className="space-y-1 pb-3 pt-2">
                             <ResponsiveNavLink
-                                href={route("dashboard")}
-                                active={route().current("dashboard")}
+                                href={route("dashboard.index")}
+                                active={route().current("dashboard.index")}
                             >
                                 Dashboard
                             </ResponsiveNavLink>

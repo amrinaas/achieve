@@ -2,6 +2,9 @@ import React from "react";
 import Badge from "./Badge";
 
 const Table = ({ items, header, handleRowClick }) => {
+    let itemsPerPage = items.meta.per_page;
+    let currentPage = items.meta.current_page;
+
     return (
         <div className="overflow-x-auto">
             <table className="min-w-full border-collapse border border-gray-300">
@@ -21,14 +24,14 @@ const Table = ({ items, header, handleRowClick }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {items.map((item, index) => (
+                    {items.data.map((item, index) => (
                         <tr
                             key={item.id}
                             className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer text-sm"
                             onClick={() => handleRowClick(item)}
                         >
                             <td className="border border-gray-300 px-4 py-2 text-center">
-                                {index + 1}
+                                {(currentPage - 1) * itemsPerPage + index + 1}{" "}
                             </td>
                             {header.map((col, i) => {
                                 return (
